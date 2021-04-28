@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--手动装配-->
+    <bean id="emp" class="com.brook.entity.Emp">
+        <property name="dept" ref="dept"></property>
+        <property name="name" value="张三"></property>
+    </bean>
+    <bean id="dept" class="com.brook.entity.Dept" p:name="研发部"></bean>
+
+    <!--自动装配，通过autowire属性的byName和byType进行根据名称和属性类型自动注入,通过byType装配时被装配的类型对象只能有一个（其他手动装配的属性正常装配）-->
+    <bean id="emp1" class="com.brook.entity.Emp" autowire="byType">
+        <property name="name" value="李四"></property>
+    </bean>
+
+</beans>

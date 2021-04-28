@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启组件扫秒，base-package告诉哪个包下的类中有注解，多个包用逗号隔开，或扫秒包的上层目录-->
+    <!--<context:component-scan base-package="com.brook"></context:component-scan>-->
+    <!--
+    use-default-filters="false"：默认为true，false表示不使用默认的filter
+    <context:include-filter：设置包含扫秒哪些类
+    type="annotation" expression="org.springframework.stereotype.Controller":表示只扫秒带@Controller的注解，其他的不扫秒
+    expression:的value为注解类，表示按照配置的注解过滤
+    <context:exclude-filter:表示不扫描
+    -->
+    <context:component-scan base-package="com.brook" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <!--<context:include-filter  type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
+
+    <!--这两也可以只写其中一个-->
+    <context:component-scan base-package="com.brook">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+</beans>

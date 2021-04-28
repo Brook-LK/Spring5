@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置User类的创建，id是唯一标识的，class对应所在类（其实是对应编译后的User.class文件,name（做用和id一样）中可以加特殊符号，也可以是多个-->
+    <bean id="user" class="com.brook.entity.User" name="/user2">
+        <!--使用property属性注入（配合set方法，得需要有set方法），name为属性名，value为属性值-->
+        <property name="name" value="张三"></property>
+        <property name="id" value="1"></property>
+    </bean>
+
+    <!--有参构造注入属性-->
+    <bean id="user2" class="com.brook.entity.User">
+        <!--通过constructor-arg进行有参构造-->
+        <!--
+        <constructor-arg name="name" value="李四"></constructor-arg>
+        <constructor-arg name="id" value="2"></constructor-arg>
+        -->
+        <!--index值为0时标识有参构造的第一个参数-->
+        <constructor-arg index="0" value="2"></constructor-arg>
+        <constructor-arg index="1" value="李四"></constructor-arg>
+    </bean>
+
+    <bean id="user3" class="com.brook.entity.User">
+        <!--这里有相同的构造函数时自动识别功能回出问题-->
+        <constructor-arg index="0" value="3"></constructor-arg>
+    </bean>
+</beans>

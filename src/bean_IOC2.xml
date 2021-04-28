@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--使用p名称空间注入,上面加p属性-->
+
+    <!--通过p:属性名注入属性，同样是得配合set方法-->
+    <bean id="order" class="com.brook.entity.Order" p:id="1" p:name="西游记">
+    </bean>
+
+    <bean id="order1" class="com.brook.entity.Order">
+        <property name="name" value="红楼梦"></property>
+        <!--设置空值-->
+        <property name="id">
+            <null></null>
+        </property>
+    </bean>
+
+    <!--特殊符号，1、用转义字符&lt.&gt；2、把带特殊符号的内容，写到CDATA中-->
+    <bean id="order2" class="com.brook.entity.Order">
+        <!--value可以拆出来写-->
+        <property name="name">
+            <!--CDATA的写法（xml中的写法）:<![CDATA[值]]>-->
+            <value> <![CDATA[<<水浒传>>]]> </value>
+        </property>
+        <property name="id" value="3"></property>
+    </bean>
+
+</beans>

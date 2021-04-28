@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="stu" class="com.brook.entity.Stu">
+        <property name="name" value="张三"></property>
+        <!--数组类型注入-->
+        <property name="course" >
+            <array>
+                <value>语文</value>
+                <value>数学</value>
+                <value>英语</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>list1</value>
+                <value>list2</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>set1</value>
+                <value>set2</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="key1" value="value1"></entry>
+                <entry key="key2" value="value2"></entry>
+            </map>
+        </property>
+        <!--注入对象list-->
+        <property name="books">
+            <list>
+                <ref bean="book1"></ref>
+                <ref bean="book2"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="book1" class="com.brook.entity.Book" p:name="语文书"></bean>
+    <bean id="book2" class="com.brook.entity.Book" p:name="数学书"></bean>
+
+    <bean id="course" class="com.brook.entity.Course"></bean>
+    <bean id="course1" class="com.brook.entity.Course" scope="prototype"></bean>
+
+
+</beans>
