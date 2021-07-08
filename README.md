@@ -1,13 +1,26 @@
 # _[Spring5](https://github.com/Brook-LK/Spring5/tree/main/src/com/brook/test)_ 
 
+### [Spring下载](#1)  
+### [Spring概述](#2)  
+### [IOC容器](#3)  
+  #### [Bean类型](#3.1)  
+  #### [Bean作用域](#3.2)  
+  #### [Bean生命周期](#3.3)  
+  #### [Bean注解](#3.4)  
+### [AOP](#4)  
+  #### [AOP原理](#4.1)  
+  #### [AOP术语](#4.2)  
+  #### [切入点表达式](#4.3)  
+### [JdbcTemplate](#5)  
+  #### [事务管理](#5.1)  
+### [Spring5新特性](#6)  
+
 ![开心一刻](title.jpg)
 
-Spring5及Spring功能特性  
+<h3 id='1'> Spring5及Spring功能特性 </h3>   
 [下载地址](https://repo.spring.io/release/org/springframework/spring/)
 
-### Spring概述 
-
-# [Spring5](#1)
+<h3 id='2'> Spring概述 </h3>  
 
 针对bean的生命周期进行管理的轻量级容器;   
 Spring 主要由七部分组成,分别是Spring Core, Spring AOP,
@@ -22,7 +35,7 @@ Spring 主要由七部分组成,分别是Spring Core, Spring AOP,
  spring-expression-5.3.5.jar  
  - 其他用到的包后面需要的时候再导入
 
-### IOC容器  
+<h3 id='3'> IOC容器 </h3>   
 
 启用@Test，引入JUnit4  
 技术：xml解析--DOM4J是 dom4j.org 出品的一个开源 XML 解析包，工厂模式，反射   
@@ -36,21 +49,21 @@ Spring 主要由七部分组成,分别是Spring Core, Spring AOP,
  ClassName object = context.getBean("id",ClassName.class);
  - ioc操作Bean管理（基于注解）  
  
-##### Bean类型  
+<h4 id='3.1'>  Bean类型 </h4>  
 
 普通Bean: 手动创建的Bean，在配置文件定义bean类型就是返回类型  
 FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以与返回类型不一样  
 1、创建类，让这个类作为工厂bean，实现接口FactoryBean   
 2、实现接口里面的方法，在实现的方法中定义返回的bean类型   
 
-##### Bean作用域  
+<h4 id='3.2'> Bean作用域  </h4>  
 
  - 在默认情况下创建的bean是单实例,可以通过scope="prototype"来设置为多实例      
  singleton在加载配置文件的时候创建对象   
  prototype在调用getBean的时候创建对象    
  另外还有request(在一次请求中有效)和session(在一次对话中有效)   
 
-##### Bean生命周期  
+<h4 id='3.3'> Bean生命周期  </h4>  
 
  1. 通过构造器创建bean实例（无参构造） 
  2. 为bean的属性设置值和对其他bean的引用（调用set方法）  
@@ -60,7 +73,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
  4. bean可以使用了（对象获取到了） 
  5. 当容器关闭的时候，调用bean的销毁方法（需要配置销毁的方法） 
 
-##### Bean注解  
+<h4 id='3.4'> Bean注解  </h4>  
 
  - Spring针对Bean管理中创建对象提供注解：  
  @Component、@Controller、@Service、@Repository，其中后三个都是基于第一个来创建的注解，@Repository一般用在dao层（这三个注解没有非常明确的区分，只不过一般区分引用在控制层，服务层，dao层）   
@@ -69,13 +82,13 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
  - 注入属性：   
  @Resource、@Autowired、@Qualifier、@Value,其中@Autowired（根据属性类型自动装配）、@Qualifier（根据属性名称进行注入）这两一般搭配使用获取多实现接口的类（多态）；@Resource（既可以根据属性类型有可以根据名称注入）；@Value（注入普通类型属性）     
 
-### AOP   
+<h3 id='4'>  AOP  </h3>   
 
  - 面向切面（方面）编程    
  - 对业务逻辑各个部分进行隔离，从而降低业务逻辑间的耦合度，提高程序的可重用性能，提高开发效率     
  - 不通过修改源代码方式，在主干功能里添加新功能       
  
-##### AOP原理    
+<h4 id='4.1'> AOP原理  </h4>     
 
  - 底层使用动态代理   
  1. 有接口的情况-JDK动态代理：1、创建接口实现代理对象；2、增强类的方法     
@@ -87,7 +100,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
  - Spring框架一般基于AspectJ实现AOP操作，AspectJ(可以基于注解和xml配置实现)是一个AOP框架，并不是Spring的
  - 引入依赖：spring-aspects-5.3.5.jar
 
-##### AOP术语    
+<h4 id='4.2'> AOP术语 </h4>   
  1. 连接点，可以被增强的方法叫连接点   
  2. 切入点，实际被增强的方法叫切入点    
  3. 通知（增强）   
@@ -100,7 +113,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
     3.2.5 最终通知    
  4. 切面（动作），把通知应用到切入点的过程     
 
-##### 切入点表达式    
+<h4 id='4.3'> 切入点表达式  </h4>    
 
  1. 作用：知道对哪个类里面的哪个方法增强     
  2. 语法结构    
@@ -109,7 +122,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
   例： execution( * com.brook.dao.UserDao.* (..))    //* 表示所有修饰符，增强所有方法       
   例： execution( * com.brook.dao.* .* (..))    //包中所有类所有方法增强      
 
-### JdbcTemplate    
+<h3 id='5'> JdbcTemplate  </h3>  
 
 ##### 引入依赖    
  - druid-1.0.20.jar 连接池     
@@ -129,7 +142,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
  - 批量操作
   1. batchUpdate(String sql, List<Object[]> batchArgs) ,batchArgs为批量操作数组，顺序和sql中参数对应      
  
-### 事务管理
+<h4 id='5.1'> 事务管理  </h4>  
 
 <h3 id='1'>测试目录</h3>
 
@@ -160,7 +173,7 @@ FactoryBean: 通过工厂创建的Bean，在配置文件定义bean类型可以�
 
 ##### 事务隔离级别，隔离性（脏读，不可重复读，幻读）          
 
-### Spring5新特性    
+<h3 id='6'> Spring5新特性 </h3>   
 
 ##### log4j2的整合（spring5框架自带了通用的日志封装）    
 
